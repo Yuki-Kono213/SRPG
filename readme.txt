@@ -1,2 +1,47 @@
 //左width960 右widthを削除すればレイアウトが正常
 //音楽:齋藤博人様/Flagments of The World(LILT-0018)より
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Unity WebGL Player | GameTitle</title>
+<style type="text/css"></style>
+</head>
+<body style="text-align: center">
+<canvas id="unity-canvas" style="width: 960px; height: 540px; background: #231F20"></canvas>
+<progress id="progress_bar" min="0" max="1.0" value="0.0" style="width: 960px"></progress>
+<script src="Build/Build.loader.js"></script> 
+<script>
+      const promise = createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/Build.data",
+        frameworkUrl: "Build/Build.framework.js",
+        codeUrl: "Build/Build.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Maker Name",
+        productName: "Game Title",
+        productVersion: "1.00",
+      } , OnLoadProgress);
+
+      promise.then(OnLoadSuccess, OnLoadFailure);
+
+    var progressbar = document.getElementById("progress_bar");
+
+    function OnLoadSuccess(e) {
+        //ロードが成功してUNITYが起動したときの処理
+        progressbar.style.display='none';
+    }
+    function OnLoadFailure(error) {
+        //ロードが失敗したときの処理
+        console.log("Load Failed :" + error);
+    }
+    function OnLoadProgress(e){
+        //ロードの進捗
+        if(progressbar!=null){
+            progressbar.setAttribute("value", e);
+        }
+}
+</script>
+</body>
+</html>
