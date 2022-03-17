@@ -1,26 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Unity WebGL Player | WarSLG</title>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Unity WebGL Player | GameTitle</title>
+<style type="text/css"></style>
 </head>
-
 <body style="text-align: center">
-  <canvas id="unity-canvas" width=960 height=600 style="height: 600px; background: #231F20"></canvas>
-  <progress id="progress_bar" min="0" max="1.0" style="width: 960px"></progress>
-  <script src="Build/Build.loader.js"></script>
-  <script>
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-      // Mobile device style: fill the whole browser client area with the game canvas:
-      var meta = document.createElement('meta');
-      meta.name = 'viewport';
-      meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-      document.getElementsByTagName('head')[0].appendChild(meta);
-    }
-
-    const promise = createUnityInstance(document.querySelector("#unity-canvas"), {
+<canvas id="unity-canvas" style="width: 960px; height: 540px; background: #231F20"></canvas>
+<progress id="progress_bar" min="0" max="1.0" value="0.0" style="width: 960px"></progress>
+<script src="Build/WebGL.loader.js"></script> 
+<script>
+      const promise = createUnityInstance(document.querySelector("#unity-canvas"), {
         dataUrl: "Build/WebGL.data",
         frameworkUrl: "Build/WebGL.framework.js",
         codeUrl: "Build/WebGL.wasm",
@@ -31,23 +22,23 @@
       } , OnLoadProgress);
 
       promise.then(OnLoadSuccess, OnLoadFailure);
+
     var progressbar = document.getElementById("progress_bar");
 
     function OnLoadSuccess(e) {
-      //ロードが成功してUNITYが起動したときの処理
-      progressbar.style.display = 'none';
+        //ロードが成功してUNITYが起動したときの処理
+        progressbar.style.display='none';
     }
     function OnLoadFailure(error) {
-      //ロードが失敗したときの処理
-      console.log("Load Failed :" + error);
+        //ロードが失敗したときの処理
+        console.log("Load Failed :" + error);
     }
-    function OnLoadProgress(e) {
-      //ロードの進捗
-      if (progressbar != null) {
-        progressbar.setAttribute("value", e);
-      }
-    }
-  </script>
+    function OnLoadProgress(e){
+        //ロードの進捗
+        if(progressbar!=null){
+            progressbar.setAttribute("value", e);
+        }
+}
+</script>
 </body>
-
 </html>
