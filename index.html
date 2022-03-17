@@ -19,17 +19,17 @@
       document.getElementsByTagName('head')[0].appendChild(meta);
     }
 
-    createUnityInstance(document.querySelector("#unity-canvas"), {
-      dataUrl: "Build/Build.data.unityweb",
-      frameworkUrl: "Build/Build.framework.js.unityweb",
-      codeUrl: "Build/Build.wasm.unityweb",
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "DefaultCompany",
-      productName: "WarSLG",
-      productVersion: "0.1",
-      // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-      // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-    });
+    const promise = createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/WebGL.data",
+        frameworkUrl: "Build/WebGL.framework.js",
+        codeUrl: "Build/WebGL.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Maker Name",
+        productName: "Game Title",
+        productVersion: "1.00",
+      } , OnLoadProgress);
+
+      promise.then(OnLoadSuccess, OnLoadFailure);
     var progressbar = document.getElementById("progress_bar");
 
     function OnLoadSuccess(e) {
