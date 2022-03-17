@@ -10,8 +10,8 @@
 <style type="text/css"></style>
 </head>
 <body style="text-align: center">
-<canvas id="unity-canvas" style="width: 960px; height: 540px; background: #231F20"></canvas>
-<progress id="progress_bar" min="0" max="1.0" value="0.0" style="width: 960px"></progress>
+<canvas id="unity-canvas" width=960 height=600 style="height: 600px; background: #231F20"></canvas>
+<progress id="progress_bar" min="0" max="1.0" value="0.0"style="width: 960px" ></progress>
 <script src="Build/Build.loader.js"></script> 
 <script>
       const promise = createUnityInstance(document.querySelector("#unity-canvas"), {
