@@ -22,6 +22,7 @@
         companyName: "Maker Name",
         productName: "Game Title",
         productVersion: "1.00",
+        Module: { TOTAL_STACK: 6 * 1024 * 1024 }
       } , OnLoadProgress);
 
       promise.then(OnLoadSuccess, OnLoadFailure);
